@@ -416,7 +416,7 @@ Given the UI design implement List lotteries feature.
 <details>
   <summary><b>Handle no search result case</b></summary><br>
 
-<img width="511" alt="Screenshot 2023-07-17 at 14 48 54" src="https://github.com/callstack-workshops/abbott-module-4-homework/assets/13610886/9b1142b4-ffd1-4aa4-b3b0-2d48c57a2e3a">
+<img width="511" alt="Screenshot 2023-07-17 at 14 48 54" src="./images/04.png">
 
 
 </details>
