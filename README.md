@@ -371,7 +371,7 @@ rm -rf mobile/.git
   <details>
     <summary>Form validation</summary>
     
-  <img width="511" alt="ui" src="https://github.com/callstack-workshops/abbott-module-4-homework/assets/13610886/d7e0e79a-bec5-4e0d-99d9-7dee01b36134" />
+  <img width="511" alt="ui" src="./images/01.png" />
 
     
   </details>
