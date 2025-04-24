@@ -7,7 +7,7 @@
  * @returns true in case of @param is >= start and value <= end
  */
 
-import {LotteryError} from '../types';
+import { LotteryError } from '../types';
 
 export const includesValueIn = (value: number, start: number, end: number) =>
   value >= start && value < end;

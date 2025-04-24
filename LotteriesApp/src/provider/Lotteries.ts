@@ -1,7 +1,7 @@
-import type {Lottery} from '../types';
-import {LotteryError} from '../types';
-import {includesValueIn} from '../utils/ext';
-import {logError} from '../utils/logger';
+import type { Lottery } from '../types';
+import { LotteryError } from '../types';
+import { includesValueIn } from '../utils/ext';
+import { logError } from '../utils/logger';
 
 const LOTTERIES_PROVIDER = 'LotteriesProvider';
 enum HttpMethod {
@@ -24,7 +24,7 @@ enum Path {
 async function request<T>(
   method: HttpMethod,
   relativePath: string,
-  body?: string | null,
+  body?: string | null
 ): Promise<T> {
   const response = await fetch(`http://localhost:3000${relativePath}`, {
     method: method,
@@ -59,7 +59,7 @@ export const lotteriesListProvider = async (): Promise<Lottery[]> => {
     logError(
       LOTTERIES_PROVIDER,
       'failed to fetch lotteries due to exception',
-      error,
+      error
     );
     throw error;
   }

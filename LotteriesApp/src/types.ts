@@ -9,5 +9,8 @@ export interface Lottery {
 }
 
 export enum LotteryError {
-  NONE = 1, SERVER = 2, CLIENT = 3, UNKNOWN = 4,
+  NONE = 1,
+  SERVER = 2,
+  CLIENT = 3,
+  UNKNOWN = 4,
 }
