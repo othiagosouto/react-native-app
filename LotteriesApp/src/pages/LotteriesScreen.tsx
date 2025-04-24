@@ -18,9 +18,9 @@ export const LotteriesScreen = () => {
     <ActivityIndicator style={styles.loading} />
   ) : (
     <FlatList
-      style={styles.cardList}
       data={data}
       renderItem={({ item }) => <LotteryCardView lottery={item} />}
+      contentContainerStyle={styles.cardList} // Adds spacing at the end
       keyExtractor={(item) => item.id}
     />
   );
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     marginStart: 16,
     marginEnd: 16,
     marginTop: 8,
+    paddingBottom: 80,
   },
   loading: {
     justifyContent: 'center',
