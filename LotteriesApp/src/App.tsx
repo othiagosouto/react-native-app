@@ -1,11 +1,12 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { LotteriesScreen } from './src/pages/LotteriesScreen';
+
+import { LotteriesScreen } from './pages/LotteriesScreen';
 
 const queryClient = new QueryClient();
 
-function App(): React.JSX.Element {
+const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaView style={styles.fullPage}>
@@ -13,7 +14,7 @@ function App(): React.JSX.Element {
       </SafeAreaView>
     </QueryClientProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   fullPage: {
