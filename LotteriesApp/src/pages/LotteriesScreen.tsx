@@ -1,4 +1,12 @@
-import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import {
+  ActivityIndicator,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
@@ -21,7 +29,17 @@ export const LotteriesScreen = () => {
     <View>
       <Text style={styles.title}>Lotteries App</Text>
       {component}
-    </View>);
+      <Fab />
+    </View>
+  );
+};
+
+const Fab = () => {
+  return (
+    <TouchableOpacity accessibilityRole="button" style={styles.fab}>
+      <FontAwesome6 name="plus" size={24} color="white" iconStyle="solid" />
+    </TouchableOpacity>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -37,5 +55,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     textAlign: 'center',
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'blue',
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
