@@ -1,4 +1,4 @@
-import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
@@ -17,7 +17,11 @@ export const LotteriesScreen = () => {
     />
   );
 
-  return component;
+  return (
+    <View>
+      <Text style={styles.title}>Lotteries App</Text>
+      {component}
+    </View>);
 };
 
 const styles = StyleSheet.create({
@@ -29,5 +33,9 @@ const styles = StyleSheet.create({
   loading: {
     justifyContent: 'center',
     flex: 1,
+  },
+  title: {
+    fontSize: 25,
+    textAlign: 'center',
   },
 });
