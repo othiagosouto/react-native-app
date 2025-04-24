@@ -1,4 +1,5 @@
-import { Lottery } from '../types';
+import { Lottery, LotteryError } from '../types';
+import { includesValueIn } from '../utils/ext';
 import { logError } from '../utils/logger';
 
 const LOTTERIES_PROVIDER = "LotteriesProvider"
@@ -30,8 +31,17 @@ async function request<T>(
         },
         body: body,
     });
+    const statusCode = response.status;
 
-    return await response.json();
+    if (includesValueIn(statusCode, 200, 299)) {
+        return await response.json();
+    } else if (includesValueIn(statusCode, 400, 499)) {
+        throw LotteryError.CLIENT;
+    } else if (includesValueIn(statusCode, 500, 599)) {
+        throw LotteryError.SERVER;
+    } else {
+        throw LotteryError.UNKNOWN;
+    }
 }
 
 /**
