@@ -6,7 +6,7 @@ import { LotteriesScreen } from './pages/LotteriesScreen';
 
 const queryClient = new QueryClient();
 
-const App = () => {
+export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaView style={styles.fullPage}>
@@ -21,5 +21,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default App;
