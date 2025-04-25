@@ -1,6 +1,9 @@
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
+import { useNavigation } from '@react-navigation/native';
 import {
   ActivityIndicator,
+  SafeAreaView,
+  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -12,7 +15,21 @@ import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
 
 export const LotteriesScreen = () => {
-  const { data, isLoading, isError } = useLotteriesList();
+  const { data, isLoading } = useLotteriesList();
+  const navigation = useNavigation();
+  const onLotteryAdded = () => {
+    Alert.alert('Alert Title', 'Alert Msg', [
+      {
+        text: 'Cancel',
+      },
+      {
+        text: 'OK',
+      },
+    ]);
+  };
+  const handleAddLottery = () => {
+    navigation.navigate('AddLotteryScreen', { onLotteryAdded: onLotteryAdded });
+  };
 
   const component = isLoading ? (
     <ActivityIndicator style={styles.loading} />
@@ -26,17 +43,27 @@ export const LotteriesScreen = () => {
   );
 
   return (
-    <View>
-      <Text style={styles.title}>Lotteries App</Text>
-      {component}
-      <Fab />
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text style={styles.title}>Lotteries App</Text>
+        {component}
+        <Fab navigate={() => handleAddLottery()} />
+      </View>
+    </SafeAreaView>
   );
 };
 
-const Fab = () => {
+interface FabProps {
+  navigate: () => void;
+}
+
+const Fab = ({ navigate }: FabProps) => {
   return (
-    <TouchableOpacity accessibilityRole="button" style={styles.fab}>
+    <TouchableOpacity
+      accessibilityRole="button"
+      style={styles.fab}
+      onPress={() => navigate()}
+    >
       <FontAwesome6 name="plus" size={24} color="white" iconStyle="solid" />
     </TouchableOpacity>
   );
@@ -47,7 +74,7 @@ const styles = StyleSheet.create({
     marginStart: 16,
     marginEnd: 16,
     marginTop: 8,
-    paddingBottom: 80,
+    paddingBottom: 110,
   },
   loading: {
     justifyContent: 'center',
@@ -60,8 +87,8 @@ const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
     margin: 16,
-    right: 0,
-    bottom: 0,
+    right: 9,
+    bottom: 30,
     backgroundColor: 'blue',
     borderRadius: 30,
     width: 60,
