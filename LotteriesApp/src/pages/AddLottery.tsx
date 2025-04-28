@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { AddLotteryForm } from '../components/AddLotteryForm';
 
-export const AddLotteryScreen = () => {
+export const AddLottery = () => {
   const navigation = useNavigation();
   const route = useRoute();
 

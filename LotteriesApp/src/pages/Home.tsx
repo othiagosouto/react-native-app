@@ -13,14 +13,14 @@ import {
 import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
 
-export const LotteriesScreen = () => {
+export const Home = () => {
   const { data, isLoading, refetch } = useLotteriesList();
   const navigation = useNavigation();
   const onLotteryAdded = () => {
     refetch();
   };
   const handleAddLottery = () => {
-    navigation.navigate('AddLotteryScreen', { onLotteryAdded: onLotteryAdded });
+    navigation.navigate('AddLottery', { onLotteryAdded: onLotteryAdded });
   };
 
   const component = isLoading ? (
