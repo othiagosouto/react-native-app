@@ -64,3 +64,35 @@ export const lotteriesListProvider = async (): Promise<Lottery[]> => {
     throw error;
   }
 };
+
+/**
+ *
+ * Add a new lottery
+ * @param name Lottery name
+ * @param prize prize amount of this lotteryu
+ *
+ * @returns @type {Result<T,Error>}
+ */
+export const addLottery = async (
+  name: string,
+  prize: string
+): Promise<Lottery[]> => {
+  try {
+    return await request(
+      HttpMethod.POST,
+      Path.LOTTERIES,
+      JSON.stringify({
+        type: 'simple',
+        name,
+        prize,
+      })
+    );
+  } catch (error) {
+    logError(
+      LOTTERIES_PROVIDER,
+      'failed to add a new lottery due to an exception:',
+      error
+    );
+    throw error;
+  }
+};
