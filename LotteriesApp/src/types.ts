@@ -14,3 +14,8 @@ export enum LotteryError {
   CLIENT = 3,
   UNKNOWN = 4,
 }
+
+export interface LotteryRegisterItem {
+  id: string;
+  name: string;
+}

@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text } from 'react-native';
 
 import { EmptyMessage } from '../../../components/EmptyMessage';
 import { LotteryCardView } from '../../../components/LotteryCardView';
+import { storeLotteriesRegistered } from '../../../store/storeLotteriesRegistered';
 import type { Lottery } from '../../../types';
 
 interface LotteriesListProps {
@@ -19,6 +20,7 @@ export const LotteriesList = ({
   isSelected,
   onClick,
 }: LotteriesListProps) => {
+  const { isRegistered } = storeLotteriesRegistered();
   if (isError) {
     return <Text> error loading the list </Text>;
   } else {
@@ -29,7 +31,7 @@ export const LotteriesList = ({
           <LotteryCardView
             lottery={item}
             selected={isSelected(item.id)}
-            disabled={false}
+            disabled={isRegistered(item.id)}
             onClick={onClick}
           />
         )}

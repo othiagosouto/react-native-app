@@ -7,6 +7,7 @@ import { useToast } from 'react-native-toast-notifications';
 import { Fab } from '../../components/Fab';
 import { Searchbar } from '../../components/Searchbar';
 import { useLotteriesList } from '../../hooks/useLotteries';
+import { LotteryRegisterItem } from '../../types';
 
 import { LotteriesList } from './components/LotteriesList';
 import { Title } from './components/Title';
@@ -39,12 +40,23 @@ export const Home = () => {
     }
   };
 
+  const clearSelection = () => {
+    setSelectedLotteries([]);
+  };
+
+  const handleRegisterClick = () => {
+    navigation.navigate('RegisterLottery', {
+      items: selectedLotteries,
+      onSuccess: clearSelection,
+    });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Button
         disabled={selectedLotteries.length === 0}
         style={styles.registerButton}
-        onPress={() => navigation.navigate('RegisterLottery', {})}
+        onPress={handleRegisterClick}
       >
         Register
       </Button>
@@ -59,7 +71,7 @@ export const Home = () => {
       />
       {isLoading ? <ActivityIndicator style={styles.loading} /> : undefined}
       <Fab action={handleAddLottery} />
-    </SafeAreaView >
+    </SafeAreaView>
   );
 };
 
