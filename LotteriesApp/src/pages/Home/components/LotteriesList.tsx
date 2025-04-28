@@ -1,24 +1,33 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList, StyleSheet, Text } from 'react-native';
 
 import { EmptyMessage } from '../../../components/EmptyMessage';
 import { LotteryCardView } from '../../../components/LotteryCardView';
 import type { Lottery } from '../../../types';
 
 interface LotteriesListProps {
+  isError: boolean;
   items: Lottery[];
   searchText: string;
 }
 
-export const LotteriesList = ({ items, searchText }: LotteriesListProps) => {
-  return (
-    <FlatList
-      data={items}
-      renderItem={({ item }) => <LotteryCardView lottery={item} />}
-      contentContainerStyle={styles.lotteriesList}
-      keyExtractor={(item) => item.id}
-      ListEmptyComponent={<EmptyMessage searchText={searchText} />}
-    />
-  );
+export const LotteriesList = ({
+  items,
+  searchText,
+  isError,
+}: LotteriesListProps) => {
+  if (isError) {
+    return <Text> error loading the list </Text>;
+  } else {
+    return (
+      <FlatList
+        data={items}
+        renderItem={({ item }) => <LotteryCardView lottery={item} />}
+        contentContainerStyle={styles.lotteriesList}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={<EmptyMessage searchText={searchText} />}
+      />
+    );
+  }
 };
 
 const styles = StyleSheet.create({

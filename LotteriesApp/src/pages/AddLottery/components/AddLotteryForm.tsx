@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
-import { useAddLottery } from '../../../hooks/useAddLottery';
-
 import { Button } from '../../../components/Button';
 import { TextInputApp } from '../../../components/TextInputApp';
+import { useAddLottery } from '../../../hooks/useAddLottery';
 
 interface LotteryFormProps {
   onSuccess: () => void;

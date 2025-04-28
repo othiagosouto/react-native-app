@@ -14,10 +14,9 @@ import { Title } from './components/Title';
 export const Home = () => {
   const [searchText, setSearchText] = useState('');
   const toast = useToast();
-  const { data, isLoading, refetch } = useLotteriesList();
+  const { data, isLoading, isError } = useLotteriesList();
   const navigation = useNavigation();
   const onLotteryAdded = () => {
-    refetch();
     toast.show('New lottery added successfully!');
   };
   const handleAddLottery = () => {
@@ -32,6 +31,7 @@ export const Home = () => {
       <Title text="Lotteries" />
       <Searchbar onTextChange={setSearchText} style={styles.searchBar} />
       <LotteriesList
+        isError={isError}
         items={filteredItems ? filteredItems : []}
         searchText={searchText}
       />
