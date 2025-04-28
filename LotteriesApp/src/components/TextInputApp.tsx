@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 
-interface TextInputViewProps {
+interface TextInputAppProps {
   placeholder: string;
   error?: string;
   text: string;
@@ -10,14 +10,14 @@ interface TextInputViewProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export const TextInputView = ({
+export const TextInputApp = ({
   text,
   setText,
   placeholder,
   error,
   onBlur,
   style,
-}: TextInputViewProps) => {
+}: TextInputAppProps) => {
   return (
     <View style={[style && styles.column]}>
       <TextInput
@@ -41,11 +41,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#E1E1E0',
-  },
-  button: {
-    alignContent: 'flex-start',
-    borderColor: 'black',
-    borderWidth: 1,
   },
   error: {
     color: 'red',

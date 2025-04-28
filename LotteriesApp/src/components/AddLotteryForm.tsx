@@ -5,7 +5,7 @@ import { Text } from 'react-native-paper';
 import { useAddLottery } from '../hooks/useAddLottery';
 
 import { Button } from './Button';
-import { TextInputView } from './TextInputView';
+import { TextInputApp } from './TextInputApp';
 
 interface LotteryFormProps {
   onSuccess: () => void;
@@ -40,7 +40,7 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
     <View style={styles.mainContainer}>
       <Text style={styles.title}>Add a new lottery</Text>
 
-      <TextInputView
+      <TextInputApp
         placeholder="Lottery name"
         error={lotteryNameError}
         text={lotteryName}
@@ -48,7 +48,7 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
         onBlur={handleLotteryNameError}
       />
 
-      <TextInputView
+      <TextInputApp
         placeholder="Lottery Prize"
         error={lotteryPrizeError}
         text={lotteryPrize}
