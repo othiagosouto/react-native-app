@@ -1,3 +1,4 @@
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import { useNavigation } from '@react-navigation/native';
 import {
   ActivityIndicator,
@@ -38,8 +39,8 @@ export const Home = () => {
 
   return (
     <SafeAreaView>
-      <View>
-        <Text style={styles.title}>Lotteries App</Text>
+      <View style={styles.screenContainer}>
+        <Title />
         {component}
         <Fab action={handleAddLottery} />
       </View>
@@ -47,11 +48,29 @@ export const Home = () => {
   );
 };
 
+const Title = () => {
+  return (
+    <View style={styles.titleContainer}>
+      <Text style={styles.title}>Lotteries</Text>
+      <FontAwesome6
+        name="dice-six"
+        size={36}
+        color="black"
+        iconStyle={'solid'}
+      />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
+  screenContainer: {
+    paddingStart: 16,
+    paddingEnd: 16,
+    paddingTop: 32,
+    flex: 1,
+    flexDirection: 'column',
+  },
   cardList: {
-    marginStart: 16,
-    marginEnd: 16,
-    marginTop: 8,
     paddingBottom: 110,
   },
   loading: {
@@ -61,5 +80,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 25,
     textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    gap: 5,
+    marginBottom: 8,
   },
 });

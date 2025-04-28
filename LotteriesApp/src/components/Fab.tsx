@@ -20,9 +20,8 @@ export const Fab = ({ action }: FabProps) => {
 const styles = StyleSheet.create({
   fab: {
     position: 'absolute',
-    margin: 16,
-    right: 9,
-    bottom: 30,
+    right: 16,
+    bottom: 60,
     backgroundColor: 'blue',
     borderRadius: 30,
     width: 60,
