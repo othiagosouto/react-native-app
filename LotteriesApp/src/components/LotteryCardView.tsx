@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    margin: 8,
+    marginBottom: 8,
     gap: 5,
     padding: 16,
   },
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headline: {
-    flex: 1,
     textAlign: 'left',
     fontSize: 16,
     lineHeight: 24,
