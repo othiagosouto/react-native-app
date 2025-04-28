@@ -5,7 +5,7 @@ import React from 'react';
 import { ToastProvider } from 'react-native-toast-notifications';
 
 import { AddLottery } from './pages/AddLottery';
-import { Home } from './pages/Home';
+import { Home } from './pages/Home/Home';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
