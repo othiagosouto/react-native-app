@@ -1,9 +1,15 @@
-import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { Text } from 'react-native-paper';
 
 interface ButtonViewProps {
   label: string;
   onClick: () => void;
+  error?: string;
   loading?: boolean;
   disabled: boolean;
 }
@@ -11,24 +17,28 @@ interface ButtonViewProps {
 export const ButtonView = ({
   loading,
   label,
+  error,
   onClick,
   disabled,
 }: ButtonViewProps) => {
   return (
-    <TouchableOpacity
-      disabled={disabled}
-      accessibilityRole="button"
-      style={[styles.buttonContainer, disabled && styles.buttonDisabled]}
-      onPress={onClick}
-    >
-      {loading ? (
-        <ActivityIndicator />
-      ) : (
-        <Text style={[styles.buttonText, disabled && styles.textDisabled]}>
-          {label}
-        </Text>
-      )}
-    </TouchableOpacity>
+    <View style={styles.column}>
+      <TouchableOpacity
+        disabled={disabled}
+        accessibilityRole="button"
+        style={[styles.buttonContainer, disabled && styles.buttonDisabled]}
+        onPress={onClick}
+      >
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <Text style={[styles.buttonText, disabled && styles.textDisabled]}>
+            {label}
+          </Text>
+        )}
+      </TouchableOpacity>
+      <Text style={styles.error}>Failed to fetch information</Text>
+    </View>
   );
 };
 
@@ -49,5 +59,14 @@ const styles = StyleSheet.create({
   },
   textDisabled: {
     color: '#ccc',
+  },
+  column: {
+    flexDirection: 'column',
+  },
+  error: {
+    color: 'red',
+    fontSize: 14,
+    paddingTop: 5,
+    textAlign: 'center',
   },
 });
