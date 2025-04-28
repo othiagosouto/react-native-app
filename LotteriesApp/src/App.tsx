@@ -2,7 +2,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { AddLotteryScreen } from './pages/AddLotteryScreen';
 import { LotteriesScreen } from './pages/LotteriesScreen';
