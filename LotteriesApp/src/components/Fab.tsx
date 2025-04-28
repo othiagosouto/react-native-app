@@ -9,7 +9,7 @@ export const Fab = ({ action }: FabProps) => {
   return (
     <TouchableOpacity
       accessibilityRole="button"
-      style={styles.fab}
+      style={styles.container}
       onPress={() => action()}
     >
       <FontAwesome6 name="plus" size={24} color="white" iconStyle="solid" />
@@ -18,15 +18,15 @@ export const Fab = ({ action }: FabProps) => {
 };
 
 const styles = StyleSheet.create({
-  fab: {
+  container: {
     position: 'absolute',
-    right: 16,
-    bottom: 60,
-    backgroundColor: 'blue',
-    borderRadius: 30,
+    bottom: 20,
+    right: 20,
     width: 60,
     height: 60,
+    borderRadius: 30,
+    backgroundColor: 'blue',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
 });
