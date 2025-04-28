@@ -1,9 +1,9 @@
 import { FlatList, StyleSheet } from 'react-native';
 
-import type { Lottery } from '../types';
+import type { Lottery } from '../../../types';
 
-import { EmptyMessage } from './EmptyMessage';
-import { LotteryCardView } from './LotteryCardView';
+import { EmptyMessage } from '../../../components/EmptyMessage';
+import { LotteryCardView } from '../../../components/LotteryCardView';
 
 interface LotteriesListProps {
   items: Lottery[];
