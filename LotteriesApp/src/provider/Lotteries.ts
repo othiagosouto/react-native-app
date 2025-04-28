@@ -11,6 +11,7 @@ enum HttpMethod {
 
 enum Path {
   LOTTERIES = '/lotteries',
+  REGISTER = '/register',
 }
 /**
  *
@@ -91,6 +92,37 @@ export const addLottery = async (
     logError(
       LOTTERIES_PROVIDER,
       'failed to add a new lottery due to an exception:',
+      error
+    );
+    throw error;
+  }
+};
+
+/**
+ *
+ * Register lottery
+ * @param name name of the customer
+ * @param lotteryId Lottery id
+ *
+ * @returns @type {Result<T,Error>}
+ */
+export const registerLottery = async (
+  name: string,
+  lotteryId: string
+): Promise<Lottery[]> => {
+  try {
+    return await request(
+      HttpMethod.POST,
+      Path.REGISTER,
+      JSON.stringify({
+        name,
+        lotteryId,
+      })
+    );
+  } catch (error) {
+    logError(
+      LOTTERIES_PROVIDER,
+      `failed to register lottery id: ${lotteryId} due to an exception`,
       error
     );
     throw error;
