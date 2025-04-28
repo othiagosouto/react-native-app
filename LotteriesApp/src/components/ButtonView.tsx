@@ -37,7 +37,9 @@ export const ButtonView = ({
           </Text>
         )}
       </TouchableOpacity>
-      <Text style={styles.error}>Failed to fetch information</Text>
+      {error ? (
+        <Text style={styles.error}>Failed to fetch information</Text>
+      ) : undefined}
     </View>
   );
 };

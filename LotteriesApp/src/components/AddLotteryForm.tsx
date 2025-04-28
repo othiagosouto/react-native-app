@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
+import { useAddLottery } from '../hooks/useAddLottery';
+
 import { ButtonView } from './ButtonView';
 import { TextInputView } from './TextInputView';
 
@@ -10,6 +12,7 @@ interface LotteryFormProps {
 }
 
 export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
+  const { mutate, error, isPending } = useAddLottery(onSuccess);
   const [lotteryName, setLotteryName] = useState('');
   const [lotteryPrize, setLotteryPrize] = useState('');
   const [lotteryNameError, setLotteryNameError] = useState<string | undefined>(
@@ -20,7 +23,7 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
   >('');
   const isValid = lotteryName.length >= 4 && lotteryPrize.length >= 4;
   const onSubmit = () => {
-    onSuccess();
+    mutate({ name: lotteryName, prize: lotteryPrize });
   };
   const handleLotteryNameError = () => {
     setLotteryNameError(
@@ -32,6 +35,7 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
       lotteryPrize.length < 4 ? 'You must add a value for prize' : undefined
     );
   };
+
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>Add a new lottery</Text>
@@ -51,7 +55,13 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
         setText={setLotteryPrize}
         onBlur={handleLotteriPrizeError}
       />
-      <ButtonView disabled={!isValid} label="Add" onClick={onSubmit} />
+      <ButtonView
+        disabled={!isValid}
+        loading={isPending}
+        label="Add"
+        onClick={onSubmit}
+        error={error?.message}
+      />
     </View>
   );
 };
@@ -67,5 +77,5 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-  }
+  },
 });
