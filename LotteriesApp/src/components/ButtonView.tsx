@@ -1,13 +1,19 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-paper';
 
 interface ButtonViewProps {
   label: string;
   onClick: () => void;
+  loading?: boolean;
   disabled: boolean;
 }
 
-export const ButtonView = ({ label, onClick, disabled }: ButtonViewProps) => {
+export const ButtonView = ({
+  loading,
+  label,
+  onClick,
+  disabled,
+}: ButtonViewProps) => {
   return (
     <TouchableOpacity
       disabled={disabled}
@@ -15,9 +21,13 @@ export const ButtonView = ({ label, onClick, disabled }: ButtonViewProps) => {
       style={[styles.buttonContainer, disabled && styles.buttonDisabled]}
       onPress={onClick}
     >
-      <Text style={[styles.buttonText, disabled && styles.textDisabled]}>
-        {label}
-      </Text>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <Text style={[styles.buttonText, disabled && styles.textDisabled]}>
+          {label}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };
