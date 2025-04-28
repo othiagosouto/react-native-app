@@ -8,10 +8,10 @@ export const AddLotteryScreen = () => {
 
   const onLotteryAdded: () => void = route.params.onLotteryAdded;
 
-  const handleBack = () => {
+  const handleSuccess = () => {
     navigation.goBack();
     onLotteryAdded();
   };
 
-  return <AddLotteryForm onSuccess={handleBack} />;
+  return <AddLotteryForm onSuccess={handleSuccess} />;
 };

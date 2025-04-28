@@ -3,7 +3,6 @@ import { useNavigation } from '@react-navigation/native';
 import {
   ActivityIndicator,
   SafeAreaView,
-  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -15,17 +14,10 @@ import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
 
 export const LotteriesScreen = () => {
-  const { data, isLoading } = useLotteriesList();
+  const { data, isLoading, refetch } = useLotteriesList();
   const navigation = useNavigation();
   const onLotteryAdded = () => {
-    Alert.alert('Alert Title', 'Alert Msg', [
-      {
-        text: 'Cancel',
-      },
-      {
-        text: 'OK',
-      },
-    ]);
+    refetch();
   };
   const handleAddLottery = () => {
     navigation.navigate('AddLotteryScreen', { onLotteryAdded: onLotteryAdded });
@@ -37,7 +29,7 @@ export const LotteriesScreen = () => {
     <FlatList
       data={data}
       renderItem={({ item }) => <LotteryCardView lottery={item} />}
-      contentContainerStyle={styles.cardList} // Adds spacing at the end
+      contentContainerStyle={styles.cardList}
       keyExtractor={(item) => item.id}
     />
   );
