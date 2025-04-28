@@ -7,12 +7,14 @@ import {
   Text,
   View,
 } from 'react-native';
+import { useToast } from 'react-native-toast-notifications';
 
 import { Fab } from '../components/Fab';
 import { LotteryCardView } from '../components/LotteryCardView';
 import { useLotteriesList } from '../hooks/useLotteries';
 
 export const Home = () => {
+  const toast = useToast();
   const { data, isLoading, refetch } = useLotteriesList();
   const navigation = useNavigation();
   const onLotteryAdded = () => {
@@ -20,6 +22,7 @@ export const Home = () => {
   };
   const handleAddLottery = () => {
     navigation.navigate('AddLottery', { onLotteryAdded: onLotteryAdded });
+    toast.show('New lottery added successfully!');
   };
 
   const component = isLoading ? (
