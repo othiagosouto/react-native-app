@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper';
 
 import { useAddLottery } from '../hooks/useAddLottery';
 
-import { ButtonView } from './ButtonView';
+import { Button } from './Button';
 import { TextInputView } from './TextInputView';
 
 interface LotteryFormProps {
@@ -55,7 +55,7 @@ export const AddLotteryForm = ({ onSuccess }: LotteryFormProps) => {
         setText={setLotteryPrize}
         onBlur={handleLotteriPrizeError}
       />
-      <ButtonView
+      <Button
         disabled={!isValid}
         loading={isPending}
         label="Add"

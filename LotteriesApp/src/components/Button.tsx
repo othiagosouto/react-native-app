@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import { Text } from 'react-native-paper';
 
-interface ButtonViewProps {
+interface ButtonProps {
   label: string;
   onClick: () => void;
   error?: string;
@@ -14,13 +14,13 @@ interface ButtonViewProps {
   disabled: boolean;
 }
 
-export const ButtonView = ({
+export const Button = ({
   loading,
   label,
   error,
   onClick,
   disabled,
-}: ButtonViewProps) => {
+}: ButtonProps) => {
   return (
     <View style={styles.column}>
       <TouchableOpacity
