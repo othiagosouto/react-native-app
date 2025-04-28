@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { ToastProvider } from 'react-native-toast-notifications';
 
-import { AddLottery } from './pages/AddLottery';
+import { AddLottery } from './pages/AddLottery/AddLottery';
 import { Home } from './pages/Home/Home';
 
 const queryClient = new QueryClient();

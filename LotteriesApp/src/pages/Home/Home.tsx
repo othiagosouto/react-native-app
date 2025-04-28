@@ -5,10 +5,11 @@ import { ActivityIndicator } from 'react-native-paper';
 import { useToast } from 'react-native-toast-notifications';
 
 import { Fab } from '../../components/Fab';
-import { LotteriesList } from './components/LotteriesList';
 import { Searchbar } from '../../components/Searchbar';
-import { Title } from './components/Title';
 import { useLotteriesList } from '../../hooks/useLotteries';
+
+import { LotteriesList } from './components/LotteriesList';
+import { Title } from './components/Title';
 
 export const Home = () => {
   const [searchText, setSearchText] = useState('');
