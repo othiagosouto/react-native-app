@@ -44,7 +44,7 @@ export const Home = () => {
       <Button
         disabled={selectedLotteries.length === 0}
         style={styles.registerButton}
-        onLongPress={() => console.error('tap')}
+        onPress={() => navigation.navigate('RegisterLottery', {})}
       >
         Register
       </Button>
@@ -59,7 +59,7 @@ export const Home = () => {
       />
       {isLoading ? <ActivityIndicator style={styles.loading} /> : undefined}
       <Fab action={handleAddLottery} />
-    </SafeAreaView>
+    </SafeAreaView >
   );
 };
 

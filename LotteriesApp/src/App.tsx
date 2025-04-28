@@ -6,6 +6,7 @@ import { ToastProvider } from 'react-native-toast-notifications';
 
 import { AddLottery } from './pages/AddLottery/AddLottery';
 import { Home } from './pages/Home/Home';
+import { RegisterLottery } from './pages/RegisterLottery/RegisterLottery';
 
 const queryClient = new QueryClient();
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,11 @@ export const App = () => {
               options={{ title: '' }}
             />
             <Stack.Screen name="AddLottery" component={AddLottery} />
+            <Stack.Screen
+              name="RegisterLottery"
+              component={RegisterLottery}
+              options={{ presentation: 'modal' }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </QueryClientProvider>

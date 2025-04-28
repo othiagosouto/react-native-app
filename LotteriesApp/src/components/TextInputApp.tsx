@@ -6,7 +6,7 @@ interface TextInputAppProps {
   error?: string;
   text: string;
   setText: (value: string) => void;
-  onBlur: () => void;
+  onBlur?: () => void;
   style?: StyleProp<ViewStyle>;
 }
 
@@ -23,7 +23,7 @@ export const TextInputApp = ({
       <TextInput
         placeholder={placeholder}
         onChangeText={setText}
-        style={styles.input}
+        style={[style, styles.input]}
         onBlur={onBlur}
         value={text}
       />
