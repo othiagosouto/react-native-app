@@ -8,12 +8,16 @@ interface LotteriesListProps {
   isError: boolean;
   items: Lottery[];
   searchText: string;
+  isSelected: (value: string) => boolean;
+  onClick: (id: string) => void;
 }
 
 export const LotteriesList = ({
   items,
   searchText,
   isError,
+  isSelected,
+  onClick,
 }: LotteriesListProps) => {
   if (isError) {
     return <Text> error loading the list </Text>;
@@ -21,7 +25,14 @@ export const LotteriesList = ({
     return (
       <FlatList
         data={items}
-        renderItem={({ item }) => <LotteryCardView lottery={item} />}
+        renderItem={({ item }) => (
+          <LotteryCardView
+            lottery={item}
+            selected={isSelected(item.id)}
+            disabled={false}
+            onClick={onClick}
+          />
+        )}
         contentContainerStyle={styles.lotteriesList}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={<EmptyMessage searchText={searchText} />}

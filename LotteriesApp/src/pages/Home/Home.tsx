@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
+import { ActivityIndicator, Button } from 'react-native-paper';
 import { useToast } from 'react-native-toast-notifications';
 
 import { Fab } from '../../components/Fab';
@@ -12,6 +12,7 @@ import { LotteriesList } from './components/LotteriesList';
 import { Title } from './components/Title';
 
 export const Home = () => {
+  const [selectedLotteries, setSelectedLotteries] = useState<string[]>([]);
   const [searchText, setSearchText] = useState('');
   const toast = useToast();
   const { data, isLoading, isError } = useLotteriesList();
@@ -26,14 +27,35 @@ export const Home = () => {
     (item) => item.name.toLowerCase().search(searchText.toLowerCase()) !== -1
   );
 
+  const handleCardTap = (id: string) => {
+    const index = selectedLotteries.indexOf(id);
+    if (index === -1) {
+      setSelectedLotteries([...selectedLotteries.concat(id)]);
+    } else {
+      const temp = [...selectedLotteries];
+      temp.splice(index, 1);
+
+      setSelectedLotteries(temp);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <Button
+        disabled={selectedLotteries.length === 0}
+        style={styles.registerButton}
+        onLongPress={() => console.error('tap')}
+      >
+        Register
+      </Button>
       <Title text="Lotteries" />
       <Searchbar onTextChange={setSearchText} style={styles.searchBar} />
       <LotteriesList
         isError={isError}
         items={filteredItems ? filteredItems : []}
         searchText={searchText}
+        isSelected={(id) => selectedLotteries.indexOf(id) !== -1}
+        onClick={handleCardTap}
       />
       {isLoading ? <ActivityIndicator style={styles.loading} /> : undefined}
       <Fab action={handleAddLottery} />
@@ -55,5 +77,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     start: '50%',
     top: '50%',
+  },
+  registerButton: {
+    alignSelf: 'flex-end',
   },
 });

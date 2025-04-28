@@ -1,17 +1,37 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import type { Lottery } from '../types';
 
 interface LotteryCardViewProps {
+  selected: boolean;
+  disabled: boolean;
   lottery: Lottery;
+  onClick: (id: string) => void;
 }
-export const LotteryCardView = ({ lottery }: LotteryCardViewProps) => {
+export const LotteryCardView = ({
+  disabled,
+  selected,
+  lottery,
+  onClick,
+}: LotteryCardViewProps) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.headline}>{lottery.name}</Text>
-      <Text style={styles.supportingText}>{lottery.prize}</Text>
-      <Text style={styles.supportingText}>{lottery.id}</Text>
-    </View>
+    <TouchableOpacity
+      disabled={disabled}
+      accessibilityRole="button"
+      onPress={() => onClick(lottery.id)}
+    >
+      <View
+        style={[
+          styles.container,
+          selected && styles.selected,
+          disabled && styles.disabled,
+        ]}
+      >
+        <Text style={styles.headline}>{lottery.name}</Text>
+        <Text style={styles.supportingText}>{lottery.prize}</Text>
+        <Text style={styles.supportingText}>{lottery.id}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -49,5 +69,12 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: 0.25,
     color: '#444746',
+  },
+  disabled: {
+    backgroundColor: '#A9A9A9',
+  },
+  selected: {
+    borderColor: 'blue',
+    borderWidth: 1,
   },
 });
