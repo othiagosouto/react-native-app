@@ -12,7 +12,6 @@ export const useLotteriesList = () =>
   useQuery<Lottery[]>({
     queryKey: ['lotteriesList'],
     queryFn: async () => {
-      const result: Lottery[] = await lotteriesListProvider();
-      return result;
+      return await lotteriesListProvider();
     },
   });

@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import type { Lottery } from '../types';
 import { LotteryError } from '../types';
 import { includesValueIn } from '../utils/ext';
@@ -13,6 +15,13 @@ enum Path {
   LOTTERIES = '/lotteries',
   REGISTER = '/register',
 }
+
+const baseUrl = () => {
+  return Platform.OS === 'android'
+    ? 'http://10.0.2.2:3000'
+    : 'http://localhost:3000';
+};
+
 /**
  *
  * @param method support methods, see @type {HttpMethod}
@@ -27,17 +36,17 @@ async function request<T>(
   relativePath: string,
   body?: string | null
 ): Promise<T> {
-  const response = await fetch(`http://localhost:3000${relativePath}`, {
+  const response = await fetch(`${baseUrl()}${relativePath}`, {
     method: method,
     headers: {
       'Content-Type': 'application/json',
     },
     body: body,
   });
-  const statusCode = response.status;
+  const statusCode = await response.status;
 
   if (includesValueIn(statusCode, 200, 299)) {
-    return await response.json();
+    return response.json();
   } else if (includesValueIn(statusCode, 400, 499)) {
     throw LotteryError.CLIENT;
   } else if (includesValueIn(statusCode, 500, 599)) {
@@ -55,7 +64,7 @@ async function request<T>(
  */
 export const lotteriesListProvider = async (): Promise<Lottery[]> => {
   try {
-    return await request(HttpMethod.GET, Path.LOTTERIES);
+    return request(HttpMethod.GET, Path.LOTTERIES);
   } catch (error) {
     logError(
       LOTTERIES_PROVIDER,
@@ -79,7 +88,7 @@ export const addLottery = async (
   prize: string
 ): Promise<Lottery[]> => {
   try {
-    return await request(
+    return request(
       HttpMethod.POST,
       Path.LOTTERIES,
       JSON.stringify({
@@ -109,9 +118,9 @@ export const addLottery = async (
 export const registerLottery = async (
   name: string,
   lotteryId: string
-): Promise<Lottery[]> => {
+): Promise<Lottery> => {
   try {
-    return await request(
+    return request(
       HttpMethod.POST,
       Path.REGISTER,
       JSON.stringify({
