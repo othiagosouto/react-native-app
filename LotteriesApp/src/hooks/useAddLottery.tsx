@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { addLottery } from '../provider/Lotteries';
+import { addLottery } from '../Remote/Lotteries';
 
 export const useAddLottery = (onSuccess: () => void) => {
   const queryClient = useQueryClient();

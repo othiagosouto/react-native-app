@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { lotteriesListProvider } from '../provider/Lotteries';
+import { lotteriesListProvider } from '../Remote/Lotteries';
 import type { Lottery } from '../types';
 
 /**

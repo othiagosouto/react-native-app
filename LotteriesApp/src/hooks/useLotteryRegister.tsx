@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import { registerLottery } from '../provider/Lotteries';
+import { registerLottery } from '../Remote/Lotteries';
 import type { LotteryRegisterItem } from '../types';
 
 export const useLotteriesRegistered = (onSuccess: () => void) => {
