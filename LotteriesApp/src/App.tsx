@@ -20,7 +20,10 @@ export const App = () => {
             <Stack.Screen
               name="Home"
               component={Home}
-              options={{ title: '' }}
+              options={{
+                title: '',
+                headerShown: false,
+              }}
             />
             <Stack.Screen name="AddLottery" component={AddLottery} />
             <Stack.Screen

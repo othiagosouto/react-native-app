@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { EmptyMessage } from '../../../components/EmptyMessage';
 import { LotteryCardView } from '../../../components/LotteryCardView';
@@ -37,6 +37,7 @@ export const LotteriesList = ({
         )}
         contentContainerStyle={styles.lotteriesList}
         keyExtractor={(item) => item.id}
+        ListFooterComponent={<View style={styles.footer} />}
         ListEmptyComponent={<EmptyMessage searchText={searchText} />}
       />
     );
@@ -47,6 +48,9 @@ const styles = StyleSheet.create({
   lotteriesList: {
     marginTop: 8,
     marginHorizontal: 16,
-    paddingBottom: 0,
+    paddingBottom: '10%',
+  },
+  footer: {
+    height: 33,
   },
 });

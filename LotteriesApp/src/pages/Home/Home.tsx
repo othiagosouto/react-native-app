@@ -7,7 +7,6 @@ import { useToast } from 'react-native-toast-notifications';
 import { Fab } from '../../components/Fab';
 import { Searchbar } from '../../components/Searchbar';
 import { useLotteriesList } from '../../hooks/useLotteries';
-import { LotteryRegisterItem } from '../../types';
 
 import { LotteriesList } from './components/LotteriesList';
 import { Title } from './components/Title';
