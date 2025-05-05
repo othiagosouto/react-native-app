@@ -124,6 +124,7 @@ app.post(
 
       console.log('res', res);
 
+      res.set('Content-Type', 'application/json');
       res.json(newLottery);
     } catch (error) {
       console.error(error);
