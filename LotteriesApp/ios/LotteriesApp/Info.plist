@@ -29,7 +29,6 @@
 	    <key>NSExceptionDomains</key>
     <dict>
         <key>localhost</key>
-        <key>10.0.2.2</key>
         <dict>
             <key>NSExceptionAllowsInsecureHTTPLoads</key>
             <true/>
@@ -37,7 +36,7 @@
     </dict>
 	  <!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
 		<key>NSAllowsArbitraryLoads</key>
-		<false/>
+		<true/>
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
@@ -63,5 +62,11 @@
 		<string>FontAwesome6_Regular.ttf</string>
 		<string>FontAwesome6_Solid.ttf</string>
 	</array>
+	<key>NSUserNotificationsUsageDescription</key>
+    <string>We need to send you notifications about important updates.</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
 </dict>
 </plist>
