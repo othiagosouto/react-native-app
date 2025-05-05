@@ -63,7 +63,7 @@ export const Home = () => {
       </Button>
 
       <CustomButton
-        disabled={true}
+        disabled={false}
         title="ClICK TO TRIGGER NOTIFICATION!"
         onPressed={() => {
           Notification.showNotification(
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   customButton: {
-    backgroundColor: 'red',
     width: 100,
     height: 50,
   },
