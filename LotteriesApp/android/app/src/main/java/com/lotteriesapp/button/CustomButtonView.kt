@@ -14,8 +14,6 @@ import com.facebook.react.uimanager.annotations.ReactProp
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.uimanager.events.RCTModernEventEmitter
 
-
-
 class CustomButtonView(
     context: Context
 ) : AbstractComposeView(context) {
