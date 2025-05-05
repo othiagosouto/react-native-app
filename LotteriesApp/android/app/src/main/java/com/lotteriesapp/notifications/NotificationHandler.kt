@@ -9,6 +9,7 @@ import android.os.Build
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.lotteriesapp.AppPermissions
 import com.lotteriesapp.R
 
 class NotificationHandler(private val contextProvider: () -> Context) {
@@ -17,7 +18,7 @@ class NotificationHandler(private val contextProvider: () -> Context) {
         with(NotificationManagerCompat.from(contextProvider())) {
             if (ActivityCompat.checkSelfPermission(
                     contextProvider(),
-                    "android.permission.POST_NOTIFICATIONS"
+                    AppPermissions.NOTIFICATIONS
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 notify(100, createNotification(title, body))

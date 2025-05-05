@@ -24,7 +24,7 @@ def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-    compileSdk 35 // Ensure compileSdk is 35 or higher for Compose
+    compileSdk 35
 
     namespace "com.lotteriesapp"
     defaultConfig {
@@ -53,7 +53,7 @@ android {
         }
     }
     buildFeatures {
-        compose true // Enable Jetpack Compose
+        compose true
     }
     composeOptions {
         kotlinCompilerExtensionVersion "1.5.17"

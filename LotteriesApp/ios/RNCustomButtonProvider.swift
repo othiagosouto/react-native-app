@@ -8,6 +8,9 @@ class RNCustomButtonProps: ObservableObject {
   @Published var onPressed: RCTBubblingEventBlock = {_ in }
 }
 
+/**
+ https://blog.stackademic.com/bridging-the-gap-creating-a-swiftui-view-for-react-native-apps-954adfd319cc
+ */
 class SimpleViewProxy: UIView {
 
   var returningView: UIView?
