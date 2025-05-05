@@ -1,15 +1,17 @@
 import { useNavigation } from '@react-navigation/native';
 import { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet, NativeModules } from 'react-native';
 import { ActivityIndicator, Button } from 'react-native-paper';
 import { useToast } from 'react-native-toast-notifications';
 
+import CustomButton from '../../components/CustomButton';
 import { Fab } from '../../components/Fab';
 import { Searchbar } from '../../components/Searchbar';
 import { useLotteriesList } from '../../hooks/useLotteries';
 
 import { LotteriesList } from './components/LotteriesList';
 import { Title } from './components/Title';
+const { Notification } = NativeModules;
 
 export const Home = () => {
   const [selectedLotteries, setSelectedLotteries] = useState<string[]>([]);
@@ -59,6 +61,18 @@ export const Home = () => {
       >
         Register
       </Button>
+
+      <CustomButton
+        disabled={true}
+        title="ClICK TO TRIGGER NOTIFICATION!"
+        onPressed={() => {
+          Notification.showNotification(
+            'hello there!',
+            'custom notification module triggered!'
+          );
+        }}
+        style={styles.customButton}
+      />
       <Title text="Lotteries" />
       <Searchbar onTextChange={setSearchText} style={styles.searchBar} />
       <LotteriesList
@@ -91,5 +105,10 @@ const styles = StyleSheet.create({
   },
   registerButton: {
     alignSelf: 'flex-end',
+  },
+  customButton: {
+    backgroundColor: 'red',
+    width: 100,
+    height: 50,
   },
 });
